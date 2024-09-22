@@ -70,7 +70,7 @@ class PasschangView(LoginRequiredMixin, FormView):
         form.save()
         update_session_auth_hash(self.request, form.user)
         messages.success(self.request, 'Password Updated Successfully')
-        send_transaction_email(self.request.user,  "Password Change Message", "transactions/pass_email.html")
+        send_transaction_email(self.request.user,  "Password Change Message", "account/pass_email.html")
         return super().form_valid(form)
 
 
@@ -92,7 +92,7 @@ class DepositMoneyView(LoginRequiredMixin, CreateView):
         account.save(update_fields=['balance']) 
 
         messages.success(self.request, f'Your deposit of {amount} was successful!')
-        send_transaction_email(self.request.user, amount, 'Deposit Confirmation', 'book/deposit_email.html')
+        send_transaction_email(self.request.user, amount, 'Deposit Confirmation', 'account/deposit_email.html')
         return super().form_valid(form)  
 
 

@@ -105,7 +105,7 @@ def ReturnBook(request, id):
     if borrow_instance:
         our_user = request.user
         our_user.account.balance += book.borro_price
-        our_user.account.save(update_field=['balance'])
+        our_user.account.save(update_fields=['balance'])
 
         borrow_instance.return_date = datetime.now()
         borrow_instance.save(update_fields=['return_date'])
